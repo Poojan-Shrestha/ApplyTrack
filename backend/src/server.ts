@@ -4,7 +4,9 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
+
 import { connectDB } from './config/database';
+import authRoutes from './routes/auth.routes';
 
 dotenv.config();
 
@@ -25,6 +27,9 @@ app.use(
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
 app.use(helmet());
+
+// Routes
+app.use('/api/auth', authRoutes);
 
 // Test route
 app.get('/', (req, res) => {
