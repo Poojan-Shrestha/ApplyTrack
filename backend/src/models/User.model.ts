@@ -41,11 +41,29 @@ const userSchema = new Schema<IUser>(
       maxlength: [100, 'Name cannot exceed 100 characters'],
     },
     profile: {
-      phone: { type: String, trim: true },
-      location: { type: String, trim: true },
-      linkedIn: { type: String, trim: true },
-      portfolio: { type: String, trim: true },
-      bio: { type: String, maxlength: 500 },
+      phone: {
+        type: String,
+        trim: true,
+      },
+      location: {
+        type: String,
+        trim: true,
+        maxlength: [200, 'Location cannot exceed 200 characters'],
+      },
+      linkedIn: {
+        type: String,
+        trim: true,
+        match: [/^https?:\/\/(www\.)?linkedin\.com\/.*$/, 'Invalid LinkedIn URL'],
+      },
+      portfolio: {
+        type: String,
+        trim: true,
+        match: [/^https?:\/\/.*$/, 'Invalid portfolio URL'],
+      },
+      bio: {
+        type: String,
+        maxlength: [500, 'Bio cannot exceed 500 characters'],
+      },
     },
     profileImage: {
       type: String,
