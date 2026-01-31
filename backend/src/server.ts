@@ -5,11 +5,12 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 
+dotenv.config();
+
 import { connectDB } from './config/database';
 import authRoutes from './routes/auth.routes';
 import jobsRoutes from './routes/jobs.routes';
-
-dotenv.config();
+import resumesRoutes from './routes/resumes.routes';
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(helmet());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobsRoutes);
+app.use('/api/resumes', resumesRoutes);
 
 // Test route
 app.get('/', (req, res) => {

@@ -26,7 +26,6 @@ const resumeSchema = new Schema<IResume>(
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
-      index: true,
     },
     filename: { type: String, required: true },
     originalFilename: { type: String, required: true },
@@ -39,8 +38,6 @@ const resumeSchema = new Schema<IResume>(
       enum: {
         values: [
           'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         ],
         message: '{VALUE} is not a supported file type',
       },
@@ -70,7 +67,6 @@ const resumeSchema = new Schema<IResume>(
 
 // Indexes
 resumeSchema.index({ userId: 1, createdAt: -1 });
-resumeSchema.index({ userId: 1, isDefault: 1 });
 
 // Ensure only one default resume per user
 resumeSchema.index(

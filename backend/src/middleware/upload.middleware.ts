@@ -12,15 +12,13 @@ const fileFilter = (
 ) => {
   const allowedMimes = [
     'application/pdf',
-    'application/msword',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   ];
 
-  const allowedExtensions = ['.pdf', '.doc', '.docx'];
+  const allowedExtensions = ['.pdf'];
   const ext = file.originalname.toLowerCase().slice(file.originalname.lastIndexOf('.'));
 
   if (!allowedMimes.includes(file.mimetype) || !allowedExtensions.includes(ext)) {
-    cb(new Error('Only PDF, DOC, and DOCX files are allowed'));
+    cb(new Error('Only PDF files are allowed'));
     return;
   }
 
