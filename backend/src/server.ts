@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 
 import { connectDB } from './config/database';
 import authRoutes from './routes/auth.routes';
+import jobsRoutes from './routes/jobs.routes';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use(helmet());
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/jobs', jobsRoutes);
 
 // Test route
 app.get('/', (req, res) => {
