@@ -1,7 +1,9 @@
 import { Response } from 'express';
 import Job from '../models/Job.model';
+import Resume from '../models/Resume.model';
 import InterviewPrep from '../models/InterviewPrep.model';
 import { AuthRequest } from '../middleware/auth.middleware';
+import { GeminiService } from '../services/gemini.service';
 
 // Get all jobs -> GET /api/jobs
 export const getJobs = async (
@@ -174,6 +176,85 @@ export const deleteJob = async (
         process.env.NODE_ENV === 'development'
           ? error.message
           : 'Failed to delete job',
+      ...(process.env.NODE_ENV === 'development' && {
+        stack: error.stack,
+      }),
+    });
+  }
+};
+
+// Analyze job with resume (ATS score) -> POST /api/jobs/:id/ats-analysis
+export const atsAnalysis = async (
+  req: AuthRequest,
+  res: Response
+): Promise<void> => {
+  try {
+    const jobId = req.params.id;
+    const { resumeId } = req.body;
+
+    if (!resumeId) {
+      res.status(400).json({
+        success: false,
+        message: 'resumeId is required',
+      });
+      return;
+    }
+
+    const resume = await Resume.findOne({
+      _id: resumeId,
+      userId: req.user!._id,
+    });
+
+    if (!resume) {
+      res.status(404).json({ success: false, message: 'Resume not found' });
+      return;
+    }
+
+    const job = await Job.findOne({
+      _id: jobId,
+      userId: req.user!._id,
+    });
+
+    if (!job) {
+      res.status(404).json({ success: false, message: 'Job not found' });
+      return;
+    }
+
+    const response = await fetch(resume.fileUrl);
+    const pdfBuffer = Buffer.from(await response.arrayBuffer());
+
+    const jobDesc = `${job.description}\n\n${job.requirements || ''}`;
+
+    const analysis = await GeminiService.analyzeATSWithPDF(
+      pdfBuffer,
+      jobDesc
+    );
+
+    job.atsScore = analysis.overall_score;
+    job.atsAnalysis = {
+      overallScore: analysis.overall_score,
+      keywordMatch: analysis.keyword_match,
+      formattingScore: analysis.formatting_score,
+      matchedKeywords: analysis.matched_keywords,
+      missingKeywords: analysis.missing_keywords,
+      strengths: analysis.strengths,
+      suggestions: analysis.suggestions,
+      analyzedAt: new Date(),
+    };
+
+    await job.save();
+
+    res.status(200).json({
+      success: true,
+      data: analysis,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message:
+        process.env.NODE_ENV === 'development'
+          ? error.message
+          : 'Failed to perform ATS analysis',
       ...(process.env.NODE_ENV === 'development' && {
         stack: error.stack,
       }),

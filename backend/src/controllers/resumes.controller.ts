@@ -4,7 +4,7 @@ import { ImageKitService } from '../services/imagekit.service';
 import { GeminiService } from '../services/gemini.service';
 import { AuthRequest } from '../middleware/auth.middleware';
 
-// Upload resume -> POST /api/resumes
+// Upload resume -> POST /api/resumes/upload
 export const uploadResume = async (
   req: AuthRequest,
   res: Response

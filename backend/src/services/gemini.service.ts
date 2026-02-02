@@ -1,7 +1,6 @@
 import { geminiAI } from '../config/gemini';
 
 const GEMINI_MODELS = [
-  'gemini-3-flash',
   'gemini-2.5-flash',
   'gemini-2.5-flash-Lite',
 ] as const;
