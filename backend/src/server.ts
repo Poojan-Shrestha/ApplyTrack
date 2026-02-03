@@ -12,6 +12,7 @@ import authRoutes from './routes/auth.routes';
 import jobsRoutes from './routes/jobs.routes';
 import resumesRoutes from './routes/resumes.routes';
 import interviewPrepRoutes from './routes/interviewPrep.routes';
+import dashboardRoutes from './routes/dashboard.routes';
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobsRoutes);
 app.use('/api/resumes', resumesRoutes);
 app.use('/api/interview-prep', interviewPrepRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Test route
 app.get('/', (req, res) => {
