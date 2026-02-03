@@ -39,9 +39,19 @@ app.use('/api/resumes', resumesRoutes);
 app.use('/api/interview-prep', interviewPrepRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
-// Test route
-app.get('/', (req, res) => {
+// Welcome route
+app.get('/', (_req, res) => {
   res.json({ message: 'ApplyTrack API' });
+});
+
+// Health check route
+app.get('/health', (_req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV,
+  });
 });
 
 const PORT = process.env.PORT || 5000;
