@@ -4,6 +4,15 @@ import Resume from '../models/Resume.model';
 import InterviewPrep from '../models/InterviewPrep.model';
 import { AuthRequest } from '../middleware/auth.middleware';
 import { GeminiService } from '../services/gemini.service';
+import mongoose from 'mongoose';
+
+// Helpers
+const isValidObjectId = (id: any): boolean =>
+  typeof id === 'string' && mongoose.Types.ObjectId.isValid(id);
+
+const badRequest = (res: Response, message: string) => {
+  res.status(400).json({ success: false, message });
+};
 
 // Get all jobs -> GET /api/jobs
 export const getJobs = async (
@@ -45,6 +54,11 @@ export const getJob = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      badRequest(res, 'Invalid job id');
+      return;
+    }
+
     const job = await Job.findOne({
       _id: req.params.id,
       userId: req.user!._id,
@@ -82,6 +96,11 @@ export const createJob = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!req.body?.title || !req.body?.company) {
+      badRequest(res, 'title and company are required');
+      return;
+    }
+
     const job = await Job.create({
       ...req.body,
       userId: req.user!._id,
@@ -111,6 +130,16 @@ export const updateJob = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      badRequest(res, 'Invalid job id');
+      return;
+    }
+
+    if (!req.body || Object.keys(req.body).length === 0) {
+      badRequest(res, 'Request body cannot be empty');
+      return;
+    }
+
     const job = await Job.findOneAndUpdate(
       { _id: req.params.id, userId: req.user!._id },
       req.body,
@@ -149,6 +178,11 @@ export const deleteJob = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      badRequest(res, 'Invalid job id');
+      return;
+    }
+
     const job = await Job.findOne({ _id: req.params.id, userId: req.user!._id });
     
     if (!job) {
@@ -192,11 +226,18 @@ export const atsAnalysis = async (
     const jobId = req.params.id;
     const { resumeId } = req.body;
 
+    if (!isValidObjectId(jobId)) {
+      badRequest(res, 'Invalid job id');
+      return;
+    }
+
     if (!resumeId) {
-      res.status(400).json({
-        success: false,
-        message: 'resumeId is required',
-      });
+      badRequest(res, 'resumeId is required');
+      return;
+    }
+
+    if (!isValidObjectId(resumeId)) {
+      badRequest(res, 'Invalid resumeId');
       return;
     }
 

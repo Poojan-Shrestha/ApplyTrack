@@ -3,6 +3,15 @@ import Resume from '../models/Resume.model';
 import { ImageKitService } from '../services/imagekit.service';
 import { GeminiService } from '../services/gemini.service';
 import { AuthRequest } from '../middleware/auth.middleware';
+import mongoose from 'mongoose';
+
+// Helpers
+const isValidObjectId = (id: any): boolean =>
+  typeof id === 'string' && mongoose.Types.ObjectId.isValid(id);
+
+const badRequest = (res: Response, message: string) => {
+  res.status(400).json({ success: false, message });
+};
 
 // Upload resume -> POST /api/resumes/upload
 export const uploadResume = async (
@@ -11,10 +20,7 @@ export const uploadResume = async (
 ): Promise<void> => {
   try {
     if (!req.file) {
-      res.status(400).json({
-        success: false,
-        message: 'Please upload a PDF resume',
-      });
+      badRequest(res, 'Please upload a PDF resume');
       return;
     }
 
@@ -83,6 +89,11 @@ export const deleteResume = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      badRequest(res, 'Invalid resume id');
+      return;
+    }
+
     const resume = await Resume.findOne({
       _id: req.params.id,
       userId: req.user!._id,
@@ -123,6 +134,11 @@ export const analyzeResume = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      badRequest(res, 'Invalid resume id');
+      return;
+    }
+
     const resume = await Resume.findOne({
       _id: req.params.id,
       userId: req.user!._id,
@@ -140,6 +156,14 @@ export const analyzeResume = async (
     const pdfBuffer = Buffer.from(await response.arrayBuffer());
 
     const analysis = await GeminiService.analyzeResumeWithPDF(pdfBuffer);
+
+    if (!analysis) {
+      res.status(502).json({
+        success: false,
+        message: 'AI failed to generate resume analysis',
+      });
+      return;
+    }
 
     resume.analysis = {
       ...analysis,
@@ -171,6 +195,11 @@ export const setDefaultResume = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!isValidObjectId(req.params.id)) {
+      badRequest(res, 'Invalid resume id');
+      return;
+    }
+    
     const resume = await Resume.findOne({
       _id: req.params.id,
       userId: req.user!._id,

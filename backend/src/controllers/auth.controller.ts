@@ -184,6 +184,15 @@ export const updateProfile = async (
   try {
     const { fullName, profile } = req.body;
 
+    // Validation
+    if (!fullName && !profile) {
+      res.status(400).json({
+        success: false,
+        message: 'Nothing to update',
+      });
+      return;
+    }
+
     const user = await User.findById(req.user?._id);
 
     if (!user) {
