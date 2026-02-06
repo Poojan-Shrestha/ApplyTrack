@@ -1,11 +1,53 @@
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useAuth } from './hooks/useAuth'
+import Layout from './components/common/Layout'
+import ProtectedRoute from './components/common/ProtectedRoute'
+import LoadingSpinner from './components/common/LoadingSpinner'
+
+// Pages
+import Login from './pages/auth/Login'
+import Register from './pages/auth/Register'
+
 function App() {
+  const { loading } = useAuth()
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner size="lg" />
+      </div>
+    )
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-      <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100">
-        Welcome to <span className="text-primary-600">ApplyTrack</span>
-      </h1>
-    </div>
-  );
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Protected Routes */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        <Route
+          index
+          element={
+            <div className="p-6 text-gray-500">
+              Dashboard coming soon
+            </div>
+          }
+        />
+      </Route>
+
+      {/* 404 */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  )
 }
 
-export default App;
+export default App
