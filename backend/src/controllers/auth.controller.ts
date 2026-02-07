@@ -61,7 +61,7 @@ export const register = async (
 
     res.status(201).json({
       success: true,
-      user: {
+      data: {
         _id: user._id,
         email: user.email,
         fullName: user.fullName,
@@ -128,7 +128,7 @@ export const login = async (
 
     res.status(200).json({
       success: true,
-      user: {
+      data: {
         _id: user._id,
         email: user.email,
         fullName: user.fullName,
