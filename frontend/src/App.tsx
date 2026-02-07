@@ -8,6 +8,7 @@ import LoadingSpinner from './components/common/LoadingSpinner'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import Dashboard from './pages/Dashboard'
+import PublicRoute from './components/common/PublicRoute'
 
 function App() {
   const { loading } = useAuth()
@@ -23,8 +24,8 @@ function App() {
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<PublicRoute> <Login /> </PublicRoute>} />
+      <Route path="/register" element={<PublicRoute> <Register /> </PublicRoute>} />
 
       {/* Protected Routes */}
       <Route

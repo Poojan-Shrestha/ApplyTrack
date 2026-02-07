@@ -3,6 +3,7 @@ import { dashboardService } from '../services/dashboard.service'
 import type { DashboardStats } from '../types'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import { Briefcase, FileText, TrendingUp, Clock } from 'lucide-react'
+import { getStatusColor } from '../utils/helpers'
 
 export default function Dashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null)
@@ -107,15 +108,4 @@ export default function Dashboard() {
       </div>
     </div>
   )
-}
-
-function getStatusColor(status: string) {
-  const colors: any = {
-    saved: 'bg-gray-200 text-gray-800',
-    applied: 'bg-blue-100 text-blue-800',
-    interviewing: 'bg-yellow-100 text-yellow-800',
-    offered: 'bg-green-100 text-green-800',
-    rejected: 'bg-red-100 text-red-800',
-  }
-  return colors[status] || 'bg-gray-200 text-gray-800'
 }
