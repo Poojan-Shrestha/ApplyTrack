@@ -9,6 +9,8 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import Dashboard from './pages/Dashboard'
 import PublicRoute from './components/common/PublicRoute'
+import JobsApplied from './pages/JobsApplied'
+import JobDetails from './pages/JobDetails'
 
 function App() {
   const { loading } = useAuth()
@@ -38,6 +40,8 @@ function App() {
       >
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="jobs" element={<JobsApplied />} />
+        <Route path="jobs/:id" element={<JobDetails />} />
       </Route>
 
       {/* 404 */}
