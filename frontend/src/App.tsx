@@ -7,6 +7,7 @@ import LoadingSpinner from './components/common/LoadingSpinner'
 // Pages
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   const { loading } = useAuth()
@@ -34,14 +35,8 @@ function App() {
           </ProtectedRoute>
         }
       >
-        <Route
-          index
-          element={
-            <div className="p-6 text-gray-500">
-              Dashboard coming soon
-            </div>
-          }
-        />
+        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route path="dashboard" element={<Dashboard />} />
       </Route>
 
       {/* 404 */}
