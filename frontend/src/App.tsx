@@ -12,6 +12,7 @@ import PublicRoute from './components/common/PublicRoute'
 import JobsApplied from './pages/JobsApplied'
 import JobDetails from './pages/JobDetails'
 import Resumes from './pages/Resumes'
+import Settings from './pages/Settings'
 
 function App() {
   const { loading } = useAuth()
@@ -44,6 +45,7 @@ function App() {
         <Route path="jobs" element={<JobsApplied />} />
         <Route path="jobs/:id" element={<JobDetails />} />
         <Route path="resumes" element={<Resumes />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
 
       {/* 404 */}

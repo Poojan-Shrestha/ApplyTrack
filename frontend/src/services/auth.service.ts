@@ -29,7 +29,7 @@ export const authService = {
   },
 
   async updateProfile(updates: Partial<User>): Promise<User> {
-    const { data } = await client.put<ApiResponse<User>>('/auth/profile', updates)
+    const { data } = await client.patch<ApiResponse<User>>('/auth/profile', updates)
     return data.data!
   },
 }
