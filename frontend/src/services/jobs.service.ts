@@ -5,7 +5,6 @@ export const jobsService = {
   async getAll(filters?: JobFilters): Promise<Job[]> {
     const params = new URLSearchParams()
     if (filters?.status && filters.status !== 'all') params.append('status', filters.status)
-    if (filters?.search) params.append('search', filters.search)
 
     const { data } = await client.get<ApiResponse<Job[]>>(`/jobs?${params.toString()}`)
     return data.data ?? []

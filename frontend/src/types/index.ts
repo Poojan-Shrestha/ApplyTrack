@@ -28,7 +28,8 @@ export interface Job {
   appliedDate?: string;
   notes?: string;
   atsScore?: number;
-  atsAnalysis?: ATSAnalysis;
+  atsAnalysis?: ATSAnalysis | null;
+  atsAnalyzedResumeId?: string | null;
   createdAt: string;
   updatedAt: string;
 }
