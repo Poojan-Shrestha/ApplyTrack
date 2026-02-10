@@ -20,12 +20,15 @@ export const getJobs = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { status, search } = req.query;
+    const { status } = req.query;
 
-    const query: any = { userId: req.user!._id };
+    const query: any = {
+      userId: req.user!._id,
+    };
 
-    if (status && status !== 'all') query.status = status;
-    if (search) query.$text = { $search: search as string };
+    if (status && status !== 'all') {
+      query.status = status;
+    }
 
     const jobs = await Job.find(query).sort({ createdAt: -1 });
 
@@ -282,6 +285,7 @@ export const atsAnalysis = async (
       suggestions: analysis.suggestions,
       analyzedAt: new Date(),
     };
+    job.atsAnalyzedResumeId = resume._id;
 
     await job.save();
 

@@ -30,7 +30,8 @@ export interface IJob extends Document {
     strengths: string[];
     suggestions: string[];
     analyzedAt: Date;
-  };
+  } | null;
+  atsAnalyzedResumeId?: mongoose.Types.ObjectId | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -41,7 +42,6 @@ const jobSchema = new Schema<IJob>(
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
-      index: true,
     },
     title: {
       type: String,
@@ -84,7 +84,6 @@ const jobSchema = new Schema<IJob>(
         message: '{VALUE} is not a valid status',
       },
       default: 'saved',
-      index: true,
     },
     appliedDate: {
       type: Date,
@@ -126,6 +125,11 @@ const jobSchema = new Schema<IJob>(
         default: Date.now,
       },
     },
+    atsAnalyzedResumeId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Resume',
+      default: null,
+    },
   },
   {
     timestamps: true,
@@ -133,10 +137,7 @@ const jobSchema = new Schema<IJob>(
 );
 
 // Indexes
-jobSchema.index({ userId: 1, status: 1 });
 jobSchema.index({ userId: 1, createdAt: -1 });
-jobSchema.index({ userId: 1, appliedDate: -1 });
-jobSchema.index({ userId: 1, company: 1 });
-jobSchema.index({ title: 'text', company: 'text', description: 'text', location: 'text' });
+jobSchema.index({ userId: 1, status: 1, createdAt: -1 });
 
 export default mongoose.model<IJob>('Job', jobSchema);

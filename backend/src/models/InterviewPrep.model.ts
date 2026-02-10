@@ -39,13 +39,11 @@ const interviewPrepSchema = new Schema<IInterviewPrep>(
       type: Schema.Types.ObjectId,
       ref: 'Job',
       required: true,
-      index: true,
     },
     userId: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
-      index: true,
     },
     behavioral: [
       {
@@ -81,7 +79,6 @@ const interviewPrepSchema = new Schema<IInterviewPrep>(
     isActive: {
       type: Boolean,
       default: true,
-      index: true,
     },
     viewCount: {
       type: Number,
@@ -105,11 +102,5 @@ interviewPrepSchema.index(
     partialFilterExpression: { isActive: true }
   }
 );
-
-// Index for user's interview preps
-interviewPrepSchema.index({ userId: 1, isActive: 1, createdAt: -1 });
-
-// Index for job's interview preps
-interviewPrepSchema.index({ jobId: 1, createdAt: -1 });
 
 export default mongoose.model<IInterviewPrep>('InterviewPrep', interviewPrepSchema);
