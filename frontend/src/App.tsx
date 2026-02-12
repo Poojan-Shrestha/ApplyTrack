@@ -2,13 +2,14 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
 import Layout from './components/common/Layout'
 import ProtectedRoute from './components/common/ProtectedRoute'
+import PublicRoute from './components/common/PublicRoute'
 import LoadingSpinner from './components/common/LoadingSpinner'
 
 // Pages
+import Home from './pages/Home'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import Dashboard from './pages/Dashboard'
-import PublicRoute from './components/common/PublicRoute'
 import JobsApplied from './pages/JobsApplied'
 import JobDetails from './pages/JobDetails'
 import Resumes from './pages/Resumes'
@@ -27,28 +28,23 @@ function App() {
 
   return (
     <Routes>
-      {/* Public Routes */}
-      <Route path="/login" element={<PublicRoute> <Login /> </PublicRoute>} />
-      <Route path="/register" element={<PublicRoute> <Register /> </PublicRoute>} />
+      {/* Public Home Page - Anyone can access */}
+      <Route path="/" element={<Home />} />
 
-      {/* Protected Routes */}
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Layout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<Navigate to="/dashboard" replace />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="jobs" element={<JobsApplied />} />
-        <Route path="jobs/:id" element={<JobDetails />} />
-        <Route path="resumes" element={<Resumes />} />
-        <Route path="settings" element={<Settings />} />
+      {/* Auth Routes - Only for logged out users */}
+      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+
+      {/* Protected Routes - Only for logged in users */}
+      <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/jobs" element={<JobsApplied />} />
+        <Route path="/jobs/:id" element={<JobDetails />} />
+        <Route path="/resumes" element={<Resumes />} />
+        <Route path="/settings" element={<Settings />} />
       </Route>
 
-      {/* 404 */}
+      {/* 404 - Redirect to home */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

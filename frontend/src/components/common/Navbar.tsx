@@ -18,9 +18,12 @@ export default function Navbar() {
       <div className="flex items-center justify-between">
 
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+        <Link
+          to="/"
+          className="text-2xl font-bold text-primary-600 dark:text-primary-400 hover:opacity-80 transition-opacity"
+        >
           ApplyTrack
-        </h1>
+        </Link>
 
         <div className="flex items-center space-x-4">
 
