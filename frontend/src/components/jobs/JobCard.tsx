@@ -1,7 +1,7 @@
 import type { Job } from '../../types'
-import { MapPin, DollarSign, ExternalLink, TrendingUp } from 'lucide-react'
+import { MapPin, DollarSign, IndianRupee, ExternalLink, TrendingUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { formatDate } from '../../utils/formatters'
+import { formatDate, formatCurrency } from '../../utils/formatters'
 import StatusBadge from './StatusBadge'
 import { getScoreColor } from '../../utils/helpers'
 
@@ -10,6 +10,9 @@ interface JobCardProps {
 }
 
 export default function JobCard({ job }: JobCardProps) {
+  const detectedCurrency: 'USD' | 'INR' =
+    job?.salaryRange?.includes('₹') ? 'INR' : 'USD'
+
   return (
     <Link
       to={`/jobs/${job._id}`}
@@ -17,11 +20,13 @@ export default function JobCard({ job }: JobCardProps) {
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
-        <div className="flex-1">
-          <h3 className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+        <div>
+          <h3 className="font-bold text-lg group-hover:text-primary-600">
             {job.title}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 font-medium">{job.company}</p>
+          <p className="text-gray-600 dark:text-gray-400 font-medium">
+            {job.company}
+          </p>
         </div>
         <StatusBadge status={job.status} />
       </div>
@@ -31,21 +36,25 @@ export default function JobCard({ job }: JobCardProps) {
         {job.location && (
           <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
             <MapPin className="h-4 w-4 mr-2" />
-            <span>{job.location}</span>
+            {job.location}
           </div>
         )}
-        
+
         {job.salaryRange && (
           <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-            <DollarSign className="h-4 w-4 mr-2" />
-            <span>{job.salaryRange}</span>
+            {detectedCurrency === 'USD' ? (
+              <DollarSign className="h-4 w-4 mr-2" />
+            ) : (
+              <IndianRupee className="h-4 w-4 mr-2" />
+            )}
+            {formatCurrency(job.salaryRange, detectedCurrency)}
           </div>
         )}
 
         {job.jobUrl && (
-          <div className="flex items-center text-sm text-primary-600 dark:text-primary-400">
+          <div className="flex items-center text-sm text-primary-600">
             <ExternalLink className="h-4 w-4 mr-2" />
-            <span className="truncate">View Posting</span>
+            View Posting
           </div>
         )}
       </div>
@@ -53,9 +62,9 @@ export default function JobCard({ job }: JobCardProps) {
       {/* ATS Score */}
       {job.atsScore !== undefined && job.atsScore > 0 && (
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-gray-400">ATS Score</span>
-            <div className="flex items-center space-x-2">
+          <div className="flex justify-between">
+            <span className="text-sm">ATS Score</span>
+            <div className="flex items-center gap-2">
               <TrendingUp className={`h-4 w-4 ${getScoreColor(job.atsScore)}`} />
               <span className={`font-bold ${getScoreColor(job.atsScore)}`}>
                 {job.atsScore}%
@@ -68,10 +77,9 @@ export default function JobCard({ job }: JobCardProps) {
       {/* Footer */}
       <div className="pt-4 border-t border-gray-200 dark:border-gray-700 mt-4">
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          {job.appliedDate 
+          {job.appliedDate
             ? `Applied ${formatDate(job.appliedDate)}`
-            : `Created ${formatDate(job.createdAt)}`
-          }
+            : `Created ${formatDate(job.createdAt)}`}
         </p>
       </div>
     </Link>

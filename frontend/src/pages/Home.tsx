@@ -11,9 +11,11 @@ import {
   Zap,
   Shield,
   Users,
-  Award
+  Award,
+  ClipboardList
 } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
+import Footer from '../components/common/Footer'
 
 export default function Home() {
   const { user } = useAuth()
@@ -33,23 +35,23 @@ export default function Home() {
           <div className="text-center">
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-4 py-2 rounded-full text-sm font-medium mb-8">
-              <Sparkles className="h-4 w-4" />
-              <span>AI-Powered Job Search Assistant</span>
+              <ClipboardList className="h-4 w-4" />
+              <span>AI-Powered Application Tracker</span>
             </div>
 
             {/* Main heading */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-              Land Your Dream Job
+              Stay Organized. Get Hired Faster.
               <br />
               <span className="bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
-                With AI-Powered Insights
+                With AI-Powered Tracking
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Track applications, optimize your resume with AI, and ace interviews—all in one place. 
-              Your intelligent companion for navigating the job search journey.
+              Track every application, optimize your resume with AI, and prepare for interviews—all in one organized place. 
+              Never miss a follow-up. Never lose track of where you applied.
             </p>
 
             {/* CTA Buttons */}
@@ -68,7 +70,7 @@ export default function Home() {
                     to="/register"
                     className="btn btn-primary text-lg px-8 py-4 flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all"
                   >
-                    <span>Get Started Free</span>
+                    <span>Start Tracking Free</span>
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                   <Link
@@ -105,10 +107,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Everything You Need to Land Your Next Job
+              Everything You Need to Track & Optimize Applications
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              ApplyTrack combines powerful tracking tools with AI-driven insights to give you an edge in your job search.
+              ApplyTrack helps you stay organized and competitive with AI-powered insights for every application.
             </p>
           </div>
 
@@ -122,7 +124,7 @@ export default function Home() {
                 Smart Application Tracking
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Organize all your job applications in one place. Track status, deadlines, and notes with ease.
+                Never lose track of where you applied. Organize all your applications with status tracking, notes, and deadlines.
               </p>
             </div>
 
@@ -132,10 +134,10 @@ export default function Home() {
                 <Target className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                ATS Analysis
+                ATS Match Analysis
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                See how well your resume matches each job. Get keyword insights and improve your chances by up to 85%.
+                See how well your resume matches each job description. Get keyword insights and improve your match score.
               </p>
             </div>
 
@@ -145,10 +147,10 @@ export default function Home() {
                 <FileText className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Resume Intelligence
+                Resume Quality Analysis
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                AI analyzes your resume quality. Get structure score, missing sections, and actionable improvements.
+                AI analyzes your resume structure and content. Get actionable improvements to make your resume stand out.
               </p>
             </div>
 
@@ -158,10 +160,10 @@ export default function Home() {
                 <Sparkles className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Interview Prep
+                AI Interview Prep
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Generate personalized interview questions, tips, and company insights for each job application.
+                Generate personalized interview questions and company-specific tips for every job you track.
               </p>
             </div>
 
@@ -174,7 +176,7 @@ export default function Home() {
                 Success Analytics
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Track your application success rate, identify patterns, and optimize your job search strategy.
+                Track your application success rate, response times, and identify what's working in your job hunt.
               </p>
             </div>
 
@@ -184,10 +186,10 @@ export default function Home() {
                 <TrendingUp className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Career Progress
+                Progress Monitoring
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Monitor your job search journey with visual dashboards, timelines, and progress tracking.
+                Visualize your application pipeline with dashboards, timelines, and progress tracking.
               </p>
             </div>
           </div>
@@ -202,7 +204,7 @@ export default function Home() {
               Get Started in 3 Simple Steps
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              From setup to success—your AI-powered job search companion
+              From chaos to organized in minutes
             </p>
           </div>
 
@@ -226,10 +228,10 @@ export default function Home() {
                 2
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Add Job Applications
+                Add Your Applications
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Track your applications, run ATS analysis, and see how well you match each job.
+                Track jobs you've applied to, run ATS analysis, and see how your resume matches.
               </p>
             </div>
 
@@ -239,10 +241,10 @@ export default function Home() {
                 3
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Ace Your Interviews
+                Prepare & Succeed
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Generate personalized interview prep materials and land your dream job!
+                Generate interview prep, track follow-ups, and land your dream job!
               </p>
             </div>
           </div>
@@ -257,14 +259,14 @@ export default function Home() {
               Why Job Seekers Love ApplyTrack
             </h2>
             <p className="text-xl text-primary-100">
-              Join thousands who've transformed their job search
+              Get organized, get insights, get hired
             </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-5xl font-bold mb-2">85%</div>
-              <div className="text-primary-100">Average ATS Match Improvement</div>
+              <div className="text-primary-100">Avg. Resume Match Improvement</div>
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold mb-2">3x</div>
@@ -272,7 +274,7 @@ export default function Home() {
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold mb-2">50+</div>
-              <div className="text-primary-100">AI-Generated Tips Per Job</div>
+              <div className="text-primary-100">AI Tips Per Application</div>
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold mb-2">100%</div>
@@ -295,7 +297,7 @@ export default function Home() {
                   Secure & Private
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Your data is encrypted and never shared. GDPR compliant with bank-level security.
+                  Your data is encrypted and never shared. Your applications stay private.
                 </p>
               </div>
             </div>
@@ -309,7 +311,7 @@ export default function Home() {
                   Lightning Fast
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Powered by Google Gemini AI for instant resume analysis and interview prep generation.
+                  Powered by Google Gemini AI for instant resume analysis and interview prep.
                 </p>
               </div>
             </div>
@@ -320,10 +322,10 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                  Always Improving
+                  Built by a Job Seeker
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Regular updates with new features based on user feedback and AI advancements.
+                  Created by someone who understands the struggle. Regular updates based on user feedback.
                 </p>
               </div>
             </div>
@@ -338,17 +340,17 @@ export default function Home() {
             <Award className="h-8 w-8 text-white" />
           </div>
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-            Ready to Transform Your Job Search?
+            Ready to Get Organized?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
-            Join thousands of job seekers who've landed their dream jobs with ApplyTrack
+            Stop using spreadsheets. Start using ApplyTrack.
           </p>
           {!user && (
             <Link
               to="/register"
               className="btn btn-primary text-lg px-10 py-4 inline-flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all"
             >
-              <span>Start Free Today</span>
+              <span>Start Tracking Free</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
           )}
@@ -356,45 +358,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-4">ApplyTrack</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Your AI-powered job search companion
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li><Link to="/features" className="hover:text-primary-600">Features</Link></li>
-                <li><Link to="/pricing" className="hover:text-primary-600">Pricing</Link></li>
-                <li><Link to="/roadmap" className="hover:text-primary-600">Roadmap</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li><Link to="/about" className="hover:text-primary-600">About</Link></li>
-                <li><Link to="/blog" className="hover:text-primary-600">Blog</Link></li>
-                <li><Link to="/contact" className="hover:text-primary-600">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li><Link to="/privacy" className="hover:text-primary-600">Privacy</Link></li>
-                <li><Link to="/terms" className="hover:text-primary-600">Terms</Link></li>
-                <li><Link to="/security" className="hover:text-primary-600">Security</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-8 text-center text-sm text-gray-600 dark:text-gray-400">
-            <p>© 2026 ApplyTrack. All rights reserved. Made with ❤️ for job seekers.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
