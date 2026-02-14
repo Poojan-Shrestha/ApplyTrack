@@ -1,5 +1,5 @@
 import type { Job } from '../../types'
-import { MapPin, DollarSign, IndianRupee, ExternalLink, TrendingUp } from 'lucide-react'
+import { MapPin, ExternalLink, TrendingUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { formatDate, formatCurrency } from '../../utils/formatters'
 import StatusBadge from './StatusBadge'
@@ -42,11 +42,11 @@ export default function JobCard({ job }: JobCardProps) {
 
         {job.salaryRange && (
           <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-            {detectedCurrency === 'USD' ? (
+            {/* {detectedCurrency === 'USD' ? (
               <DollarSign className="h-4 w-4 mr-2" />
             ) : (
               <IndianRupee className="h-4 w-4 mr-2" />
-            )}
+            )} */}
             {formatCurrency(job.salaryRange, detectedCurrency)}
           </div>
         )}

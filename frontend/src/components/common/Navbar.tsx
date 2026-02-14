@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { useTheme } from '../../hooks/useTheme'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Logo from './Logo'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
@@ -20,9 +21,9 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-bold text-primary-600 dark:text-primary-400 hover:opacity-80 transition-opacity"
+          className="hover:opacity-80 transition-opacity"
         >
-          ApplyTrack
+          <Logo size={44} showText />
         </Link>
 
         <div className="flex items-center space-x-4">

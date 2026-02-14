@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, Heart, Coffee, ExternalLink } from 'lucide-react'
+import Logo from './Logo'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -12,10 +13,7 @@ export default function Footer() {
           {/* Left: Brand + Description */}
           <div className="max-w-md">
             <div className="flex items-center space-x-2 mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-purple-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                A
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">ApplyTrack</h3>
+                <Logo size={44} showText />
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               AI-powered job application tracker. Stay organized, optimize your resume, get hired faster.

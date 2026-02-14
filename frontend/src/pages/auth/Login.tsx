@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { validateEmail } from '../../utils/helpers'
 import { LogIn, Mail, Lock, Loader2, Eye, EyeOff } from 'lucide-react'
+import Logo from '../../components/common/Logo'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -46,12 +47,13 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 p-4">
       <div className="w-full max-w-md">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <div className="text-center mb-8 flex flex-col items-center">
+            <Logo size={44} showText />
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
               Welcome Back
             </h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Sign in to your ApplyTrack account
+              Sign in to your account
             </p>
           </div>
 
