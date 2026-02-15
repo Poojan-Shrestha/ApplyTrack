@@ -12,7 +12,7 @@ export default function JobForm({ job, onSubmit, onCancel }: JobFormProps) {
   const [loading, setLoading] = useState(false)
 
   const [currency, setCurrency] = useState<'USD' | 'INR'>(
-    job?.salaryRange?.includes('₹') ? 'INR' : 'USD'
+    job?.salaryRange?.includes('$') ? 'USD' : 'INR'
   )
 
   const [formData, setFormData] = useState({
@@ -156,7 +156,7 @@ export default function JobForm({ job, onSubmit, onCancel }: JobFormProps) {
                 value={formData.location}
                 onChange={handleChange}
                 className="input"
-                placeholder="San Francisco, CA"
+                placeholder="Bangalore, Karnataka"
               />
             </div>
 
@@ -169,25 +169,6 @@ export default function JobForm({ job, onSubmit, onCancel }: JobFormProps) {
 
                 {/* Currency Toggle */}
                 <div className="flex rounded-lg border border-gray-300 dark:border-gray-600 overflow-hidden">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setCurrency('USD')
-                      setFormData(prev => ({
-                        ...prev,
-                        salaryRange: formatNumber(prev.salaryRange, 'USD'),
-                      }))
-                    }}
-                    className={`px-3 py-2 flex items-center gap-1 ${
-                      currency === 'USD'
-                        ? 'bg-primary-600 text-white'
-                        : 'bg-white dark:bg-gray-800'
-                    }`}
-                  >
-                    <DollarSign className="h-4 w-4" />
-                    USD
-                  </button>
-
                   <button
                     type="button"
                     onClick={() => {
@@ -205,6 +186,25 @@ export default function JobForm({ job, onSubmit, onCancel }: JobFormProps) {
                   >
                     <IndianRupee className="h-4 w-4" />
                     INR
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCurrency('USD')
+                      setFormData(prev => ({
+                        ...prev,
+                        salaryRange: formatNumber(prev.salaryRange, 'USD'),
+                      }))
+                    }}
+                    className={`px-3 py-2 flex items-center gap-1 ${
+                      currency === 'USD'
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-white dark:bg-gray-800'
+                    }`}
+                  >
+                    <DollarSign className="h-4 w-4" />
+                    USD
                   </button>
                 </div>
 

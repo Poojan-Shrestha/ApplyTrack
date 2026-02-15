@@ -23,7 +23,7 @@ export function formatRelativeTime(date: string | Date) {
 
 export function formatCurrency(
   amount: string | number,
-  currency: 'USD' | 'INR' = 'USD'
+  currency: 'USD' | 'INR' = 'INR'
 ) {
   if (amount === null || amount === undefined) return ''
 

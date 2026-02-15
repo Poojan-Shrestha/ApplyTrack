@@ -11,7 +11,7 @@ interface JobCardProps {
 
 export default function JobCard({ job }: JobCardProps) {
   const detectedCurrency: 'USD' | 'INR' =
-    job?.salaryRange?.includes('₹') ? 'INR' : 'USD'
+    job.salaryRange?.includes('$') ? 'USD' : 'INR'
 
   return (
     <Link

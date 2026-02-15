@@ -206,7 +206,7 @@ export default function Settings() {
             icon={<Phone className="h-5 w-5" />}
             value={form.phone}
             onChange={(val) => handleChange('phone', val)}
-            placeholder="+1 (555) 123-4567"
+            placeholder="+91 XXXXXXXXXX"
           />
 
           <InputField
@@ -214,7 +214,7 @@ export default function Settings() {
             icon={<MapPin className="h-5 w-5" />}
             value={form.location}
             onChange={(val) => handleChange('location', val)}
-            placeholder="San Francisco, CA"
+            placeholder="Bangalore, Karnataka"
           />
 
           <InputField
