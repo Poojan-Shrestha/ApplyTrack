@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { 
-  Sparkles, 
   Target, 
   FileText, 
   TrendingUp, 
@@ -12,7 +11,8 @@ import {
   Shield,
   Users,
   Award,
-  ClipboardList
+  ClipboardList,
+  MessageSquare
 } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import Footer from '../components/common/Footer'
@@ -36,22 +36,22 @@ export default function Home() {
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-4 py-2 rounded-full text-sm font-medium mb-8">
               <ClipboardList className="h-4 w-4" />
-              <span>AI-Powered Application Tracker</span>
+              <span>Smart Application Tracker</span>
             </div>
 
             {/* Main heading */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-              Stay Organized. Get Hired Faster.
+              Never Lose Track of
               <br />
               <span className="bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
-                With AI-Powered Tracking
+                Your Job Applications
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Track every application, optimize your resume with AI, and prepare for interviews—all in one organized place. 
-              Never miss a follow-up. Never lose track of where you applied.
+              Track every application, get resume insights, and prepare for interviews—all in one organized place. 
+              Stop using spreadsheets. Start landing jobs.
             </p>
 
             {/* CTA Buttons */}
@@ -70,7 +70,7 @@ export default function Home() {
                     to="/register"
                     className="btn btn-primary text-lg px-8 py-4 flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all"
                   >
-                    <span>Start Tracking Free</span>
+                    <span>Start Free</span>
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                   <Link
@@ -107,10 +107,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Everything You Need to Track & Optimize Applications
+              Everything You Need in One Place
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              ApplyTrack helps you stay organized and competitive with AI-powered insights for every application.
+              Stay organized and land your next job faster with smart tracking and insights.
             </p>
           </div>
 
@@ -121,10 +121,10 @@ export default function Home() {
                 <Briefcase className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Smart Application Tracking
+                Track Every Application
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Never lose track of where you applied. Organize all your applications with status tracking, notes, and deadlines.
+                Never lose track of where you applied. Organize applications with status updates and notes.
               </p>
             </div>
 
@@ -134,10 +134,10 @@ export default function Home() {
                 <Target className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                ATS Match Analysis
+                Match Score Analysis
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                See how well your resume matches each job description. Get keyword insights and improve your match score.
+                See how well your resume matches each job. Get keyword insights and improve your chances.
               </p>
             </div>
 
@@ -147,23 +147,23 @@ export default function Home() {
                 <FileText className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Resume Quality Analysis
+                Resume Quality Check
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                AI analyzes your resume structure and content. Get actionable improvements to make your resume stand out.
+                Get structure and content analysis. Fix what's missing and make your resume stand out.
               </p>
             </div>
 
             {/* Feature 4 */}
             <div className="card hover:shadow-lg transition-all p-8">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-6">
-                <Sparkles className="h-6 w-6 text-white" />
+                <MessageSquare className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                AI Interview Prep
+                Interview Prep
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Generate personalized interview questions and company-specific tips for every job you track.
+                Generate personalized interview questions and company-specific tips for every job.
               </p>
             </div>
 
@@ -173,10 +173,10 @@ export default function Home() {
                 <BarChart3 className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Success Analytics
+                Success Tracking
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Track your application success rate, response times, and identify what's working in your job hunt.
+                Monitor your application success rate and response times. See what's working.
               </p>
             </div>
 
@@ -186,10 +186,10 @@ export default function Home() {
                 <TrendingUp className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Progress Monitoring
+                Visual Progress
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Visualize your application pipeline with dashboards, timelines, and progress tracking.
+                See your application pipeline with dashboards and timelines. Stay motivated.
               </p>
             </div>
           </div>
@@ -201,7 +201,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Get Started in 3 Simple Steps
+              Get Started in 3 Steps
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
               From chaos to organized in minutes
@@ -215,10 +215,10 @@ export default function Home() {
                 1
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Upload Your Resume
+                Upload Resume
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Upload your resume and get instant AI quality analysis with actionable feedback.
+                Upload your resume and get instant quality feedback with actionable improvements.
               </p>
             </div>
 
@@ -228,10 +228,10 @@ export default function Home() {
                 2
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Add Your Applications
+                Add Applications
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Track jobs you've applied to, run ATS analysis, and see how your resume matches.
+                Track jobs you've applied to and see how your resume matches each description.
               </p>
             </div>
 
@@ -241,45 +241,57 @@ export default function Home() {
                 3
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Prepare & Succeed
+                Land the Job
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Generate interview prep, track follow-ups, and land your dream job!
+                Prepare for interviews, track follow-ups, and get organized to succeed.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats/Benefits */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-600 to-purple-600 text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
-              Why Job Seekers Love ApplyTrack
-            </h2>
-            <p className="text-xl text-primary-100">
-              Get organized, get insights, get hired
-            </p>
-          </div>
+      {/* Benefits Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
 
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-2">85%</div>
-              <div className="text-primary-100">Avg. Resume Match Improvement</div>
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                All-in-One
+              </h3>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                Everything in one organized place.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-2">3x</div>
-              <div className="text-primary-100">More Interview Callbacks</div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Smart Insights
+              </h3>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                Resume tips tailored to each job.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-2">50+</div>
-              <div className="text-primary-100">AI Tips Per Application</div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Stay Prepared
+              </h3>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                Interview questions for every job.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-2">100%</div>
-              <div className="text-primary-100">Free Forever</div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Free Forever
+              </h3>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                No subscriptions. No hidden fees.
+              </p>
             </div>
+
           </div>
         </div>
       </section>
@@ -294,10 +306,10 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                  Secure & Private
+                  Private & Secure
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Your data is encrypted and never shared. Your applications stay private.
+                  Your applications stay private. Your data is encrypted and never shared.
                 </p>
               </div>
             </div>
@@ -311,7 +323,7 @@ export default function Home() {
                   Lightning Fast
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Powered by Google Gemini AI for instant resume analysis and interview prep.
+                  Instant resume analysis and interview prep. No waiting around.
                 </p>
               </div>
             </div>
@@ -325,7 +337,7 @@ export default function Home() {
                   Built by a Job Seeker
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Created by someone who understands the struggle. Regular updates based on user feedback.
+                  Made by someone who gets it. Regular updates based on real feedback.
                 </p>
               </div>
             </div>
@@ -343,14 +355,14 @@ export default function Home() {
             Ready to Get Organized?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
-            Stop using spreadsheets. Start using ApplyTrack.
+            Stop using spreadsheets. Start landing jobs.
           </p>
           {!user && (
             <Link
               to="/register"
               className="btn btn-primary text-lg px-10 py-4 inline-flex items-center space-x-2 shadow-lg hover:shadow-xl transition-all"
             >
-              <span>Start Tracking Free</span>
+              <span>Start Free</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
           )}

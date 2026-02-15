@@ -23,7 +23,7 @@ export default function Navbar() {
           to="/"
           className="hover:opacity-80 transition-opacity"
         >
-          <Logo size={44} showText />
+          <Logo size={24} showText />
         </Link>
 
         <div className="flex items-center space-x-4">

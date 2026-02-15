@@ -30,7 +30,7 @@ export default function JobForm({ job, onSubmit, onCancel }: JobFormProps) {
 
   const [errors, setErrors] = useState<Record<string, string>>({})
 
-  // 🔥 Salary Formatter
+  // Salary Formatter
   const formatNumber = (value: string, currency: 'USD' | 'INR') => {
     const numbersOnly = value.replace(/[^\d]/g, '')
     if (!numbersOnly) return ''

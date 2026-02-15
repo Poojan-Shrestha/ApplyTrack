@@ -42,11 +42,6 @@ export default function JobCard({ job }: JobCardProps) {
 
         {job.salaryRange && (
           <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-            {/* {detectedCurrency === 'USD' ? (
-              <DollarSign className="h-4 w-4 mr-2" />
-            ) : (
-              <IndianRupee className="h-4 w-4 mr-2" />
-            )} */}
             {formatCurrency(job.salaryRange, detectedCurrency)}
           </div>
         )}

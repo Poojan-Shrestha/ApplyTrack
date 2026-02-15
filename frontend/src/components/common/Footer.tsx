@@ -13,10 +13,11 @@ export default function Footer() {
           {/* Left: Brand + Description */}
           <div className="max-w-md">
             <div className="flex items-center space-x-2 mb-3">
-                <Logo size={44} showText />
+                <Logo size={24} showText />
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              AI-powered job application tracker. Stay organized, optimize your resume, get hired faster.
+              Track every application, get resume insights, and prepare for interviews—all in one organized place. 
+              Stop using spreadsheets. Start landing jobs.
             </p>
           </div>
 
@@ -91,7 +92,7 @@ export default function Footer() {
               <span>and</span>
               <Coffee className="h-4 w-4 text-amber-600 dark:text-amber-400 inline" />
             </span>
-            <span>Free forever. No bullshit.</span>
+            <span>Free forever. Built for job seekers.</span>
           </p>
         </div>
       </div>

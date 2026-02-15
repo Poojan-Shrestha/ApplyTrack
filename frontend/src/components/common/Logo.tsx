@@ -21,7 +21,7 @@ export default function Logo({
       />
 
       {showText && (
-        <span className="text-xl font-bold text-primary-600 dark:text-primary-400 leading-none">
+        <span className="text-2xl font-bold text-primary-600 dark:text-primary-400 leading-none">
           ApplyTrack
         </span>
       )}
