@@ -156,41 +156,6 @@ export const interviewPrep = async (
   }
 };
 
-// Get All Interview Preps -> GET /api/interview-preps
-export const getInterviewPreps = async (
-  req: AuthRequest,
-  res: Response
-): Promise<void> => {
-  try {
-    if (!req.user?._id) {
-      res.status(401).json({ success: false, message: 'Unauthorized' });
-      return;
-    }
-
-    const includeArchived =
-        typeof req.query.includeArchived === 'string' &&
-        req.query.includeArchived.toLowerCase() === 'true';
-
-    const query: any = { userId: req.user._id };
-    if (!includeArchived) query.isActive = true;
-
-    const preps = await InterviewPrep.find(query)
-      .populate('jobId', 'title company status')
-      .sort({ createdAt: -1 });
-
-    res.status(200).json({ success: true, data: preps });
-  } catch (error: any) {
-    res.status(500).json({
-      success: false,
-      message:
-        process.env.NODE_ENV === 'development'
-          ? error.message
-          : 'Failed to fetch interview preps',
-      ...(process.env.NODE_ENV === 'development' && { stack: error.stack }),
-    });
-  }
-};
-
 // Get Single Interview Prep -> GET /api/interview-prep/:id
 export const getInterviewPrepById = async (
   req: AuthRequest,
@@ -355,47 +320,6 @@ export const deleteInterviewPrep = async (
         process.env.NODE_ENV === 'development'
           ? error.message
           : 'Failed to delete interview prep',
-      ...(process.env.NODE_ENV === 'development' && { stack: error.stack }),
-    });
-  }
-};
-
-// Delete All Interview Preps for Job -> DELETE /api/interview-prep/job/:jobId
-export const deleteAllInterviewPrepsForJob = async (
-  req: AuthRequest,
-  res: Response
-): Promise<void> => {
-  try {
-    if (!isValidObjectId(req.params.jobId)) {
-      badRequest(res, 'Invalid jobId');
-      return;
-    }
-
-    const result = await InterviewPrep.deleteMany({
-      jobId: req.params.jobId,
-      userId: req.user._id,
-    });
-
-    if (result.deletedCount === 0) {
-      res.status(404).json({
-        success: false,
-        message: 'No interview preps found for this job',
-      });
-      return;
-    }
-
-    res.status(200).json({
-      success: true,
-      deletedCount: result.deletedCount,
-      message: 'All interview preps deleted successfully',
-    });
-  } catch (error: any) {
-    res.status(500).json({
-      success: false,
-      message:
-        process.env.NODE_ENV === 'development'
-          ? error.message
-          : 'Failed to delete interview preps',
       ...(process.env.NODE_ENV === 'development' && { stack: error.stack }),
     });
   }

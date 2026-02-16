@@ -7,14 +7,6 @@ export const interviewPrepService = {
     return response.data
   },
 
-  // Get all interview preps (with optional archived)
-  getAll: async (includeArchived: boolean = false): Promise<any[]> => {
-    const response = await client.get('/interview-preps', {
-      params: { includeArchived }
-    })
-    return response.data.data
-  },
-
   // Get single interview prep by ID
   getById: async (prepId: string): Promise<any> => {
     const response = await client.get(`/interview-prep/${prepId}`)
@@ -36,10 +28,5 @@ export const interviewPrepService = {
   // Delete a version
   delete: async (prepId: string): Promise<void> => {
     await client.delete(`/interview-prep/${prepId}`)
-  },
-
-  // Delete all interview preps for a job
-  deleteAllForJob: async (jobId: string): Promise<void> => {
-    await client.delete(`/interview-prep/job/${jobId}`)
   },
 }
