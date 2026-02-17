@@ -2,7 +2,7 @@
 
 > **Never lose track of your job applications again.** Track every application, optimize your resume, and prepare for interviews—all in one organized place.
 
-<!-- 👉 **Live Application:** [https://applytrack.vercel.app](https://applytrack.vercel.app) -->
+👉 **Live Application:** [https://applytrack-silk.vercel.app](https://applytrack-silk.vercel.app)
 
 ---
 
