@@ -17,6 +17,7 @@ import dashboardRoutes from './routes/dashboard.routes';
 const app = express();
 
 // Middleware
+app.set('trust proxy', 1)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -45,7 +46,7 @@ app.get('/', (_req, res) => {
 });
 
 // Health check route
-app.get('/health', (_req, res) => {
+app.get('/api/health', (_req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
